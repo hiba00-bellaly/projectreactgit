@@ -15,10 +15,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+     
+      - name: Install dependencies
+        run: npm install
 
+      - name: Build React app
+        run: npm run build
+      
       - name: Build Docker image
-        run: docker build -t your-docker-image-name .
+        run: docker build -t client .
         working-directory: ./client
+        
+      - name: Build Docker image
+        run: docker build -t server .
+        working-directory: ./server
 
       - name: Test backend
         run: npm test
@@ -35,12 +45,6 @@ jobs:
         run: npm test
         working-directory: ./client
            
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build React app
-        run: npm run build
-        
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
