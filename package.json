@@ -6,9 +6,9 @@
   "description": "A E-commerce website.",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --require esm backend.test.js --exit",
-    "start": "nodemon app.js"
-  },
+  "start": "node server.js",
+  "build": "react-scripts build"   
+},
   "homepage": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
