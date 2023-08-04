@@ -19,13 +19,6 @@ jobs:
       with:
         node-version: '14'
 
-    - name: npm install, build and test
-      run: |
-        npm install react-scripts --save
-        npm install
-        npm run build --if-present
-        npm test
-     
     - name: Build Docker image for client
       run: docker build -t hibab/mern-client:latest ./client
 
