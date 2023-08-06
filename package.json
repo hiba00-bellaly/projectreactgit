@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "An ecommerce app with CI CD, creates a VM with terraform [Var, outputs, main] with http backend (gitlab) and pulls from dockerhub",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+ "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hiba00-bellaly/projectreactgit.git"
