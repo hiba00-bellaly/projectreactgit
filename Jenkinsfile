@@ -1,26 +1,25 @@
 pipeline {
   agent any
+  environment{
+    DOCKERHUB_CREDENTIALS = credentials('tokenjenkins')
+  }
+  
   stages {
-    stage('Build and Push Docker Images') {
+    stage('Build') {
       steps {
-        sh '''  script {
-                    // Build the client Docker image
-                    sh \'docker build -t mern-client ./client\'
+        sh 'docker build -t hibab/mern-server:latest'
 
-                    // Build the server Docker image
-                    sh \'docker build -t mern-server ./server\'
-
-                    // Log in to Docker Hub using your Docker Hub credentials
-                    docker.withRegistry(\'https://registry-1.docker.io/v2/\', credentialsId: \'1\') {
-                    // Push the client Docker image to Docker Hub
-                    sh \'docker push hibab/mern-client:latest\'
-
-                    // Push the server Docker image to Docker Hub
-                    sh \'docker push hibab/mern-server:latest\'
-                    }
-                }
-            }'''
+        sh 'docker build -t hibab/mern-client:latest'
         }
+   }
+   stage('Push') {
+     steps{
+       sh 'docker push -t hibab/mern-server:latest'
+
+       sh 'docker push -t hibab/mern-client:latest'
+     }
+    
+  }
       }
 
     }
