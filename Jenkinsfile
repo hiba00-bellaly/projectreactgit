@@ -14,13 +14,17 @@ pipeline {
    }
    stage('Push') {
      steps{
-       sh 'docker push -t hibab/mern-server:latest'
-
-       sh 'docker push -t hibab/mern-client:latest'
+ script {
+      def dockerhubCreds = credentials('hibabellaly-dockerhub')
+      withDockerRegistry([credentialsId: dockerhubCreds.id, url: ""]) {
+        sh 'docker push hibab/mern-server:latest'
+        sh 'docker push hibab/mern-client:latest'
+      }
+ }
      }
     
   }
       }
 
     }
-  }
+  
