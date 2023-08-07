@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment{
-    DOCKERHUB_CREDENTIALS = credentials('tokenjenkins')
+    DOCKERHUB_CREDENTIALS = credentials('hibabellaly-dockerhub')
   }
   
   stages {
