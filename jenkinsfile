@@ -4,12 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                echo 'working'
                 checkout scm
             }
         }
         
         stage('Build and Push Docker Images') {
             steps {
+                 echo 'working'
                 script {
                     
                     docker.withRegistry('https://registry-1.docker.io/v2/', credentialsId: '1') {
