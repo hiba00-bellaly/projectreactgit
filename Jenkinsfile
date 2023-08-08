@@ -1,10 +1,6 @@
 pipeline {
   agent any
-  environment{
-    DOCKERHUB_CREDENTIALS = credentials('hibabellaly-dockerhub')
-  }
-  
-  stages {
+   stages {
     stage('Build') {
       steps {
        sh 'docker build -t hibab/mern-server:latest ./server'
@@ -12,7 +8,7 @@ pipeline {
        sh 'docker build -t hibab/mern-client:latest ./client'
         }
    }
-   stage('Push') {
+    stage('Push') {
      steps{
  script {
       def dockerhubCreds = credentials('hibabellaly-dockerhub')
