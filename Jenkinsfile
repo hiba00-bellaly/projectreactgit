@@ -7,9 +7,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t hibab/mern-server:latest'
+       sh 'docker build -t hibab/mern-server:latest ./server'
 
-        sh 'docker build -t hibab/mern-client:latest'
+       sh 'docker build -t hibab/mern-client:latest ./client'
         }
    }
    stage('Push') {
