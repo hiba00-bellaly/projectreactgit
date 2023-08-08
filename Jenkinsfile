@@ -12,7 +12,7 @@ pipeline {
      steps{
  script {
       def dockerhubCreds = credentials('hibabellaly-dockerhub')
-      withDockerRegistry([credentialsId: dockerhubCreds.id, url: ""]) {
+      withDockerRegistry([credentialsId: dockerhubCreds, url: ""]) {
         sh 'docker push hibab/mern-server:latest'
         sh 'docker push hibab/mern-client:latest'
       }
