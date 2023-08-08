@@ -13,11 +13,11 @@ pipeline {
         stage('Push') {
          steps{
            script {
-               withDockerRegistry([credentialsId: "${DOCKERHUB_CREDENTIALS}", url: ""])
+               withDockerRegistry(credentialsId: DOCKERHUB_CREDENTIALS.id, url: "")
                {
                   bat 'docker push hibab/mern-server:latest'
                   bat 'docker push hibab/mern-client:latest'
-                }
+               }
              }
          } 
       }
