@@ -7,6 +7,17 @@ pipeline {
            bat 'docker build -t hibab/mern-client:latest ./client'
             }
          }
+        stage('Test') {
+            steps {
+                script {
+                    // Run tests for the server
+                    bat 'docker run --rm hibab/mern-server:latest npm test'
+
+                    // Run tests for the client
+                    bat 'docker run --rm hibab/mern-client:latest npm test'
+                }
+            }
+        }
         stage('Push') {
          steps{
                withDockerRegistry([credentialsId: "hibabellaly-dockerhub", url: ""])
