@@ -1,8 +1,5 @@
 pipeline {
   agent any
-   environment {
-        DOCKERHUB_CREDENTIALS = credentials('hibabellaly-dockerhub')
-   }
    stages {
         stage('Build') {
           steps {
@@ -12,13 +9,11 @@ pipeline {
          }
         stage('Push') {
          steps{
-           script {
                withDockerRegistry(credentialsId: DOCKERHUB_CREDENTIALS.id, url: "")
                {
                   bat 'docker push hibab/mern-server:latest'
                   bat 'docker push hibab/mern-client:latest'
                }
-             }
          } 
       }
     }
