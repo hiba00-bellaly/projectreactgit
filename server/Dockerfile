@@ -13,6 +13,8 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
+RUN npm test
+
 # Expose the server port (change this to your server port if it's different)
 EXPOSE 8000
 
