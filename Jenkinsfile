@@ -7,7 +7,7 @@ pipeline {
            bat 'docker build -t hibab/mern-client:latest ./client'
             }
          }
-        stage('Test') {
+        stage('test') {
             steps {
                 script {
                     // Run tests for the server
