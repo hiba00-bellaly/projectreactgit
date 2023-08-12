@@ -7,17 +7,27 @@ pipeline {
            bat 'docker build -t hibab/mern-client:latest ./client'
             }
          }
-        stage('test') {
-            steps {
-                script {
-                    // Run tests for the server
-                    bat 'docker run --rm hibab/mern-server:latest npm test'
+stage('Test') {
+    steps {
+        script {
+            def serverTestOutput = bat(script: 'docker run --rm hibab/mern-server:latest npm test', returnStdout: true, returnStatus: true)
+            echo "Server Test Output:"
+            echo serverTestOutput
 
-                    // Run tests for the client
-                    bat 'docker run --rm hibab/mern-client:latest npm test'
-                }
+            def clientTestOutput = bat(script: 'docker run --rm hibab/mern-client:latest npm test', returnStdout: true, returnStatus: true)
+            echo "Client Test Output:"
+            echo clientTestOutput
+
+            if (serverTestOutput != 0) {
+                error "Server tests failed"
+            }
+
+            if (clientTestOutput != 0) {
+                error "Client tests failed"
             }
         }
+    }
+}
         stage('Push') {
          steps{
                withDockerRegistry([credentialsId: "hibabellaly-dockerhub", url: ""])
