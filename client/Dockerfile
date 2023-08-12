@@ -12,6 +12,8 @@ RUN npm install
 # Copy the rest of the frontend application code to the working directory
 COPY . .
 
+RUN npm test
+
 
 EXPOSE 3000
 
