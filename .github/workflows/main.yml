@@ -45,10 +45,10 @@ jobs:
 
     - name: apply Kubernetes
       run: |
-          kubectl apply -f MERN/client/mern-client-service.yaml
-          kubectl apply -f MERN/client/mern-client.yaml
-          kubectl apply -f MERN/client/mern-server-service.yaml
-          kubectl apply -f MERN/server/mern-server.yaml
+          kubectl apply -f mern-client-service.yaml
+          kubectl apply -f mern-client.yaml
+          kubectl apply -f mern-server-service.yaml
+          kubectl apply -f mern-server.yaml
     - name: Deploy to Kubernetes
       run: kubectl apply -f MERN/client/mern-client-service.yaml --v=10
 
