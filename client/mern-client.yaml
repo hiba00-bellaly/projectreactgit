@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mern-client-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mern-client
+  template:
+    metadata:
+      labels:
+        app: mern-client
+    spec:
+      containers:
+        - name: mern-client-container
+          image: hibab/mern-client:latest
+          command: ["npm", "start"]
+          stdin: true
+          tty: true
+          ports:
+            - containerPort: 3000
