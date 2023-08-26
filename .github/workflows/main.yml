@@ -43,7 +43,7 @@ jobs:
           mkdir -p ~/.kube
           mv kubeconfig.yaml ~/.kube/config
 
-    - name: Deploy to Kubernetes
+    - name: apply Kubernetes
       run: |
           kubectl apply -f MERN/client/mern-client-service.yaml
           kubectl apply -f MERN/client/mern-client.yaml
