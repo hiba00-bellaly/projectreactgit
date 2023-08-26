@@ -49,5 +49,7 @@ jobs:
           kubectl apply -f MERN/client/mern-client.yaml
           kubectl apply -f MERN/client/mern-server-service.yaml
           kubectl apply -f MERN/server/mern-server.yaml
-          kubectl port-forward -n default service/mern-client-service 3000:80
+    - name: Deploy to Kubernetes
+      run: kubectl apply -f MERN/client/mern-client-service.yaml --v=10
+
           
